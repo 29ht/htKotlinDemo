@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">HtKotlin</string>
+
+<!--主类页面以及加载显示文字-->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="login_failed">Login failed</string>
+    <string name="input_qq">Enter QQ account for Avatar</string>
+    <string name="min_footer">It has been drawn to the bottom!</string>
+    <string name="hotel_list_select">Select</string>
+    <string name="dialog_cancel" >Cancel</string>
+    <string name="dialog_submit">Submit</string>
+    <string name="switch_english">Switch English</string>
+    <string name="switch_chinese">Switch Chinese</string>
+    <string name="gaod_map">Gaude map</string>
+    <string name="hotel_list_title">Hotel list</string>
+    <string name="map">Map</string>
+    <string name="add_tx_news">Add Tencent News</string>
+    <string name="switch_tx_news">Switch Tencent News</string>
+    <string name="switch_wy_news">Switch Netease News</string>
+    <string name="city_serch">City Search</string>
+    <string-array name="main_list">
+        <item>Home</item>
+        <item>Music</item>
+        <item>My</item>
+    </string-array>
+    <string-array name="home_list">
+        <item>1_News</item>
+        <item>2_Hotel list</item>
+        <item>3_Grouping ceiling</item>
+        <item>4_Daily Verse</item>
+        <item>5_City</item>
+        <item>6_Color selector</item>
+        <item>7_Camera</item>
+        <item>8_Database</item>
+        <item>9_Skin peeler</item>
+    </string-array>
+    <string-array name="mine_list_head">
+        <item>1_WeChat</item>
+        <item>2_QQ</item>
+        <item>3_Alipay </item>
+        <item>4_Meituan takeout</item>
+        <item>5_Hungry takeout</item>
+        <item>6_TaoBao</item>
+        <item>7_Gaude map</item>
+    </string-array>
+    <string-array name="mine_list">
+        <item>1_Change Password</item>
+        <item>2_Clear cache</item>
+        <item>3_Switch language</item>
+        <item>4_Log out</item>
+    </string-array>
+    <string-array name="mine_language">
+        <item>0_Follow system</item>
+        <item>1_Chinese</item>
+        <item>2_English</item>
+    </string-array>
+</resources>

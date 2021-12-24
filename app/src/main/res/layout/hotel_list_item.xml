@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="2dp"
+    android:id="@+id/card_view"
+    app:cardPreventCornerOverlap="false"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_city_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="Le Royal Meridien Shanghai"
+            android:textColor="@color/black80"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintTop_toBottomOf="@+id/banner" />
+
+        <TextView
+            android:id="@+id/tv_city_detailed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:text="Building 1 No11 Sanlitun Road Chaoyang District"
+            android:textColor="@color/black20"
+            android:textSize="@dimen/sp_11"
+            app:layout_constraintTop_toBottomOf="@+id/tv_city_name" />
+
+        <TextView
+            android:id="@+id/tv_hotel_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black80"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@+id/tv_city_detailed" />
+        <TextView
+            android:id="@+id/tv_hotel_starLevel_des"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/sp_10"
+            app:layout_constraintLeft_toRightOf="@+id/tv_hotel_rating"
+           app:layout_constraintTop_toBottomOf="@+id/tv_city_detailed" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_rating">
+
+            <TextView
+                android:id="@+id/tv_cpt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:background="@drawable/hotel_cpt"
+                android:paddingStart="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_1"
+                android:paddingEnd="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_1"
+                android:text="Corporate"
+                android:textColor="#8DC73F"
+                android:textSize="@dimen/sp_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:background="@drawable/hotel_pre"
+                android:paddingStart="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_1"
+                android:paddingEnd="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_1"
+                android:text="Most preferred"
+                android:textColor="#5ABA2C"
+                android:textSize="@dimen/sp_10"
+                app:layout_constraintStart_toEndOf="@+id/tv_cpt"
+                app:layout_constraintTop_toTopOf="@+id/tv_cpt" />
+
+            <TextView
+                android:id="@+id/tv_com_bill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_4"
+                android:background="@drawable/hotel_com_bill"
+                android:paddingStart="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_1"
+                android:paddingEnd="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_1"
+                android:text="Central Pay"
+                android:textColor="@color/blue_2"
+                android:textSize="@dimen/sp_10"
+                app:layout_constraintStart_toEndOf="@+id/tv_pre"
+                app:layout_constraintTop_toTopOf="@+id/tv_pre" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/tv_pice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_marginBottom="@dimen/dp_16"
+            android:text="1080"
+            android:textColor="@color/black80"
+            android:textSize="@dimen/sp_17"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cc" />
+
+        <TextView
+            android:id="@+id/tv_pice_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_18"
+            android:text="CNY/Night"
+            android:textColor="@color/black80"
+            android:textSize="@dimen/sp_12"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pice"
+            app:layout_constraintStart_toEndOf="@+id/tv_pice" />
+
+        <Button
+            android:id="@+id/btn_select"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@drawable/select_btn"
+            android:text="@string/hotel_list_select"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pice"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

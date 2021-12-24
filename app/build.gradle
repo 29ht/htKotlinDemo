@@ -1,0 +1,154 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+}
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true  //开启分包
+        // 使用矢量图支持库（为了兼容 API 21 以下）
+        // 阿里巴巴矢量图库：https://www.iconfont.cn/
+        vectorDrawables.useSupportLibrary = true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+
+            }
+        }
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true   //开启混淆
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+            buildConfigField("boolean", "LOG_ENABLE", "false")//控制日志是否打印
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        debug {
+            minifyEnabled false   //开启混淆
+            zipAlignEnabled false  //压缩优化
+            shrinkResources false  //移出无用资源
+            buildConfigField("boolean", "LOG_ENABLE", "true")//控制日志是否打印
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+        // for view binding :
+        // viewBinding = true
+    }
+
+    compileOptions {//使用JAVA8语法解析
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //kotlin的java8支持
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    //apk输出格式
+    applicationVariants.all {
+        variant ->
+            // Apk 输出配置
+            variant.outputs.all { output ->
+                if (variant.buildType.name == buildTypes.debug.getName()) {
+                    outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + variant.buildType.name + '.apk'
+                } else {
+                    outputFileName = rootProject.getName() + '_v' + variant.versionName + '_' + new Date().format("yyyyMMdd") + '_' + variant.buildType.name + '.apk'
+                }
+            }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    def libsImplementation = rootProject.ext.dependencies.implementation //依赖库配置变量
+    def libsTestImplementation = rootProject.ext.dependencies.testImplementation //依赖库配置变量
+    def libsAndroidTestImplementation = rootProject.ext.dependencies.androidTestImplementation
+    //依赖库配置变量
+    def libsAnnotationProcessor = rootProject.ext.dependencies.annotationProcessor //依赖库配置变量
+    //依赖库配置
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    // 基础库
+    implementation project(':base')
+    /*
+    *如果有的库和本库存在依赖冲突，可以使用以下用法解决冲突的库
+    *implementation ("xxxxx") {
+    *    exclude group: 'com.android.support'
+    *}
+    */
+    implementation libsImplementation.kotlin_stdlib
+    implementation libsImplementation.kotlin_reflect
+    implementation libsImplementation.androidx_appcompat
+    implementation libsImplementation.androidx_recyclerview
+    implementation libsImplementation.androidx_constraintlayout
+    implementation libsImplementation.coroutines_android
+    implementation libsImplementation.coroutines_kotlin
+    implementation libsImplementation.core_ktx
+    implementation libsImplementation.androidx_multidex
+    implementation libsImplementation.lifecycle_api
+    implementation libsImplementation.retrofit_gson
+    implementation libsImplementation.retrofit_scalars
+    implementation(libsImplementation.retrofit_logging) {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation libsImplementation.gson
+    implementation libsImplementation.rxandroid
+    implementation libsImplementation.rxjava
+    implementation libsImplementation.toast
+    implementation libsImplementation.base_adapter
+    implementation libsImplementation.google_material
+    implementation libsImplementation.mmkv
+    implementation libsImplementation.room
+    implementation libsImplementation.room_ktx
+    implementation libsImplementation.camera_camera
+    implementation libsImplementation.camera_view
+    implementation libsImplementation.camera_lifecycle
+    implementation libsImplementation.coil
+    implementation libsImplementation.music
+    implementation libsImplementation.agentweb
+    implementation libsImplementation.banner
+    implementation libsImplementation.lrefresh
+    implementation libsImplementation.hrefresh
+    implementation libsImplementation.skeleton
+    implementation libsImplementation.shimmerlayout
+    implementation libsImplementation.map
+    implementation libsImplementation.locationmap
+    implementation libsImplementation.searchmap
+    implementation 'com.squareup.moshi:moshi:1.12.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.12.0'
+    kapt libsAnnotationProcessor.room_compiler
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'  //检测代码内存泄漏,2.7有bug，暂时用2.5
+    implementation 'cat.ereza:customactivityoncrash:2.3.0'
+    testImplementation libsTestImplementation.junit
+    testImplementation libsTestImplementation.room
+    androidTestImplementation libsAndroidTestImplementation.test_ext
+    androidTestImplementation libsAndroidTestImplementation.test_espresso
+}
+
